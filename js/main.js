@@ -4,6 +4,7 @@ import { Sprite } from "./class/sprites/sprite.js";
 import { Settings } from "./settings.js";
 
 import {
+	startGameValues,
 	cambiaModo,
 	sueloCielo,
 	reescalarCanvas,
@@ -13,6 +14,7 @@ import {
 // ----------------------------------------------------------------------
 //	OBJETOS
 // ----------------------------------------------------------------------
+var botonComenzar = document.getElementById('boton-comenzar');
 var escenario;
 var jugador;
 //var ray;
@@ -20,10 +22,24 @@ var jugador;
 var sprites = [];	// array con los sprites
 
 // ----------------------------------------------------------------------
+// 	EVENTOS (Menu Config pre-juego)
+// ----------------------------------------------------------------------
+botonComenzar.addEventListener('click', (e) =>
+{
+	console.log(e.target.id);
+
+	if (Settings.estado.menuConfig)
+	{
+		startGameValues();
+	}
+});
+
+// ----------------------------------------------------------------------
 // TECLADO (keydown)
 // ----------------------------------------------------------------------
 document.addEventListener('keydown',function(e)
 {
+	console.log(e.keyCode);
 	switch(e.keyCode){
 		
 		case 38:
@@ -67,8 +83,12 @@ document.addEventListener('keyup',function(e)
 		case 37:
 			jugador.giraSuelta();
 		break;
-		
+
 		case 32:
+			console.log('disparo!');
+		break;
+		
+		case 17:
 			Settings.modo3D = cambiaModo(Settings.modo3D);
 		break;
 

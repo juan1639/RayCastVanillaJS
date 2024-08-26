@@ -1,6 +1,10 @@
 
 export class Settings
 {
+    static menuPreJuego = document.getElementById('pre-menu');
+    static selectFPS = document.getElementById('fps');
+    static selectDim = document.getElementById('dimensiones');
+    
     static canvas = document.getElementById('canvas');
 	static ctx = canvas.getContext('2d');
 
@@ -21,6 +25,12 @@ export class Settings
 
     static FOV = 60;
     static FOV_MEDIO = Settings.FOV / 2;
+
+    static estado =
+    {
+        menuConfig: true,
+        enJuego: false
+    };
 
     static modo3D = true;// true = Pseudo3D, false = Mapa2D
     static renderConTexturas = true;

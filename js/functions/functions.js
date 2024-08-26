@@ -41,6 +41,15 @@ function distanciaEntrePuntos(x1, y1, x2, y2)
 	return Math.sqrt((x2 - x1) * (x2 - x1) + (y2-y1)*(y2-y1));
 }
 
+function startGameValues()
+{
+	Settings.estado.menuConfig = false;
+	Settings.estado.enJuego = true;
+
+	Settings.canvas.style.display = "block";
+	Settings.menuPreJuego.style.display = "none";
+}
+
 //  PINTA COLORES BÁSICOS PARA SUELO Y TECHO
 function sueloCielo(colorCielo, colorSuelo)
 {
@@ -73,6 +82,7 @@ export {
     normalizaAngulo,
     convierteRadianes,
     distanciaEntrePuntos,
+	startGameValues,
     sueloCielo,
     reescalarCanvas,
     borraCanvas

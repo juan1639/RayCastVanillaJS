@@ -43,12 +43,13 @@ h1 {
 }
 
 #contenedor-pre-menu {
+  width: 80%;
+  height: 90%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 80%;
-  height: 90%;
   border-radius: 8px;
   padding: 1em;
   background-color: #e3d9a7;
@@ -117,6 +118,7 @@ h1 {
   border-width: 1px;
   border-color: rgba(127, 115, 29, 0.3);
   margin-top: 0.6em;
+  padding-bottom: 0.4em;
 }
 
 button {
@@ -126,7 +128,7 @@ button {
   font-weight: bold;
   color: #373601;
   background-color:#a95;
-  padding: 0.6em 1.4em;
+  padding: 0.6em 1.8em;
   border-radius: 8px;
   border-style: none;
 }
@@ -134,4 +136,8 @@ button {
 button:hover {
   opacity: 0.8;
   color: #676110;
+}
+
+button:active {
+  transform: translateY(9px);
 }
