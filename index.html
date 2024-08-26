@@ -10,6 +10,62 @@
 </head>
 
 <body>
-    <canvas id="canvas" style="border:2px solid #111;"></canvas>
+    <main id="pre-menu">
+        <div id="contenedor-pre-menu">
+
+            <section class="encabezado">
+                <h1>Menu Configuración</h1>
+            </section>
+
+            <section class="cuerpo">
+
+                <div class="opcion-menu">
+                    <span>FPS</span>
+                    <select name="fps" id="fps"
+                        style="font-size: 18px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60" selected>60</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+
+                <div class="opcion-menu">
+                    <span>Dimensiones</span>
+                    <select name="dimensiones" id="dimensiones"
+                        style="font-size: 18px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
+                        <option value="1">640x480</option>
+                        <option value="2">800x600</option>
+                        <option value="3" selected>1120x630</option>
+                        <option value="4">1280x960</option>
+                    </select>
+                </div>
+
+                <div class="opcion-menu">
+                    <section id="durante-juego">
+                        <p>Durante el Juego</p>
+                    </section>
+                </div>
+
+                <div class="opcion-menu">
+                    <span>Cambiar modo:</span>
+                    <span>Ctrl</span>
+
+                </div>
+
+                <div class="opcion-menu">
+                    <span>Cambiar Render:</span>
+                    <span>Shift</span>
+                </div>
+
+            </section>
+            
+            <section class="boton-submit">
+                <button>Comenzar</button>
+            </section>
+        </div>
+    </main>
+
+    <canvas id="canvas"></canvas>
 </body>
 </html>
