@@ -6,7 +6,7 @@ import {
 	normalizaAngulo,
 	distanciaEntrePuntos,
 	sueloTecho,
-	reescalaCanvas,
+	reescalarCanvas,
 	borraCanvas
 } from "./functions/functions.js";
 
@@ -734,7 +734,14 @@ function renderSprites()
 // ----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () =>
 {
-	const {canvas, ctx, FPS, canvasAncho, canvasAlto, tiles, nivel_1} = Settings;
+	const {
+		canvas, ctx,
+		FPS,
+		canvasAncho, canvasAlto,
+		tiles,
+		nivel_1,
+		reescalaCanvas
+	} = Settings;
 
 	tiles.src= "img/walls.png";
 
@@ -757,7 +764,7 @@ document.addEventListener("DOMContentLoaded", () =>
 	);
 	
 	//	AMPLIAMOS EL CANVAS CON CSS
-	reescalaCanvas(1024, 768);
+	reescalarCanvas(reescalaCanvas.X, reescalaCanvas.Y);
 });
 
 function buclePrincipal()

@@ -12,6 +12,13 @@ export class Settings
 
     static tamTile = 50;
 
+    //  REESCALA-CANVAS (Default)
+    static reescalaCanvas =
+    {
+        X: 1120,
+        Y: 630
+    };
+
     static FOV = 60;
     static FOV_MEDIO = Settings.FOV / 2;
 
