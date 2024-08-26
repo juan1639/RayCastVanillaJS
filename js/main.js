@@ -5,7 +5,7 @@ import {
 	convierteRadianes,
 	normalizaAngulo,
 	distanciaEntrePuntos,
-	sueloTecho,
+	sueloCielo,
 	reescalarCanvas,
 	borraCanvas
 } from "./functions/functions.js";
@@ -23,8 +23,8 @@ var zBuffer = [];	// array con la distancia a cada pared (con cada rayo)
 // ----------------------------------------------------------------------
 // TECLADO (keydown)
 // ----------------------------------------------------------------------
-document.addEventListener('keydown',function(e) {
-	
+document.addEventListener('keydown',function(e)
+{
 	switch(e.keyCode){
 		
 		case 38:
@@ -49,8 +49,8 @@ document.addEventListener('keydown',function(e) {
 // ----------------------------------------------------------------------
 // TECLADO (keyup)
 // ----------------------------------------------------------------------
-document.addEventListener('keyup',function(e) {
-		
+document.addEventListener('keyup',function(e)
+{		
 	switch(e.keyCode){	
 		
 		case 38:
@@ -71,6 +71,10 @@ document.addEventListener('keyup',function(e) {
 		
 		case 32:
 			Settings.modo3D = cambiaModo(Settings.modo3D);
+		break;
+
+		case 16:
+			Settings.renderConTexturas = cambiaModo(Settings.renderConTexturas);
 		break;
 	}
 });
@@ -284,6 +288,7 @@ class Rayo
 			this.wallHitX = this.wallHitXHorizontal;
 			this.wallHitY = this.wallHitYHorizontal;
 			this.distancia = distanciaHorizontal;
+			this.colorPared = Settings.COLORES.PARED_OSCURO;
 			//	PIXEL TEXTURA
 			var casilla = parseInt(this.wallHitX / tamTile);
 			this.pixelTextura = this.wallHitX - (casilla * tamTile);
@@ -296,6 +301,7 @@ class Rayo
 			this.wallHitX = this.wallHitXVertical;
 			this.wallHitY = this.wallHitYVertical;
 			this.distancia = distanciaVertical;
+			this.colorPared = Settings.COLORES.PARED_CLARO;
 			//	PIXEL TEXTURA
 			var casilla = parseInt(this.wallHitY / tamTile) * tamTile;
 			this.pixelTextura = this.wallHitY - casilla;
@@ -337,7 +343,7 @@ class Rayo
 
 	renderPared()
 	{
-		const {ctx, canvasAlto, tiles} = Settings;
+		const {ctx, canvasAlto, tiles, renderConTexturas} = Settings;
 
 		var altoTile = 500;// Es la altura que tendrá el muro al renderizarlo
 		var alturaMuro = (altoTile / this.distancia) * this.distanciaPlanoProyeccion;
@@ -353,27 +359,31 @@ class Rayo
 		
 		var altura = 0;// borrar cuando usemos el código de abajo
 
-		// DIBUJAMOS *** SIN Texturas ***
-		//ctx.fillStyle = 'green';
-		//ctx.fillRect(x, y0, 1, y0 - y1);
-		//return;
+		if (!renderConTexturas)
+		{
+			// DIBUJAMOS *** SIN Texturas ***
+			ctx.fillStyle = this.colorPared;
+			ctx.fillRect(x, y0, 1, alturaMuro);
+		}
+		else
+		{
+			//	DIBUJAMOS *** CON Texturas ***
+			var altoTextura = 64;
+			var alturaTextura = y0 - y1;
+			ctx.imageSmoothingEnabled = false;// PIXELAMOS LA IMAGEN
 
-		//	DIBUJAMOS CON TEXTURA
-		var altoTextura = 64;
-		var alturaTextura = y0 - y1;
-		ctx.imageSmoothingEnabled = false;// PIXELAMOS LA IMAGEN
-
-		ctx.drawImage(
-			tiles,
-			this.pixelTextura,
-			((this.idTextura -1 ) * altoTextura),
-			this.pixelTextura,
-			63,
-			x,
-			y1 + altura,
-			1,
-			alturaTextura
-		);	
+			ctx.drawImage(
+				tiles,
+				this.pixelTextura,
+				((this.idTextura -1 ) * altoTextura),
+				this.pixelTextura,
+				63,
+				x,
+				y1 + altura,
+				1,
+				alturaTextura
+			);
+		}	
 	}
 
 	dibuja()
@@ -769,16 +779,18 @@ document.addEventListener("DOMContentLoaded", () =>
 
 function buclePrincipal()
 {
+	const {modo3D, COLORES} = Settings;
+
 	borraCanvas();
 
-	if (!Settings.modo3D)
+	if (!modo3D)
 	{
 		escenario.dibuja();
 	}
 
-	if (Settings.modo3D)
+	if (modo3D)
 	{
-		sueloTecho();
+		sueloCielo(COLORES.CIELO, COLORES.SUELO);
 	}
   
 	jugador.dibuja();

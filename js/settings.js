@@ -23,6 +23,7 @@ export class Settings
     static FOV_MEDIO = Settings.FOV / 2;
 
     static modo3D = true;// true = Pseudo3D, false = Mapa2D
+    static renderConTexturas = true;
 
     //	CARGAMOS TILES
 	static tiles = new Image();
@@ -30,6 +31,15 @@ export class Settings
     //	Cargamos las imagenes para los SPRITES
 	static imgArmor = new Image();
 	static imgPlanta = new Image();
+
+    static COLORES =
+    {
+        //SUELO: '#752300'
+        SUELO: '#474747',
+        CIELO: '#8CBED6',
+        PARED_CLARO: '#aaaaaa',
+        PARED_OSCURO: '#929292',
+    };
 
     // ----------------------------------------------------------------------
     // NIVELES (Arrays)

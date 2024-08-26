@@ -4,9 +4,9 @@
 // ----------------------------------------------------------------------
 import { Settings } from "../settings.js";
 
-function cambiaModo(modo3D)
+function cambiaModo(bool)
 {
-	if (modo3D)
+	if (bool)
     {
 		return false;
     }
@@ -42,14 +42,14 @@ function distanciaEntrePuntos(x1, y1, x2, y2)
 }
 
 //  PINTA COLORES BÁSICOS PARA SUELO Y TECHO
-function sueloTecho()
+function sueloCielo(colorCielo, colorSuelo)
 {
     const {ctx} = Settings;
 
-	ctx.fillStyle = '#777777';
+	ctx.fillStyle = colorCielo;
 	ctx.fillRect(0, 0, 500, 250);
 	
-	ctx.fillStyle = '#752300';
+	ctx.fillStyle = colorSuelo;
 	ctx.fillRect(0, 250, 500, 500);
 }
 
@@ -73,7 +73,7 @@ export {
     normalizaAngulo,
     convierteRadianes,
     distanciaEntrePuntos,
-    sueloTecho,
+    sueloCielo,
     reescalarCanvas,
     borraCanvas
 };
