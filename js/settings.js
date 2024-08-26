@@ -31,7 +31,10 @@ export class Settings
     //	Cargamos las imagenes para los SPRITES
 	static imgArmor = new Image();
 	static imgPlanta = new Image();
-
+    
+    // array con la distancia a cada pared (con cada rayo)
+    static zBuffer = [];
+    
     static COLORES =
     {
         //SUELO: '#752300'
