@@ -70,7 +70,7 @@ document.addEventListener('keyup',function(e) {
 		break;
 		
 		case 32:
-			Settings.modo = cambiaModo(Settings.modo);
+			Settings.modo3D = cambiaModo(Settings.modo3D);
 		break;
 	}
 });
@@ -383,12 +383,12 @@ class Rayo
 		// -----------------------------------------------------
 		this.cast();
 
-		if (Settings.modo === 0)
+		if (Settings.modo3D)
 		{
 			this.renderPared();
 		}
 
-		if (Settings.modo === 1)
+		if (!Settings.modo3D)
 		{
 			// -------------------------------------------------
 			// LÍNEA DIRECCIÓN
@@ -424,14 +424,18 @@ class Player
 		this.velGiro = convierteRadianes(3);		// 3 grados en radianes
 		this.velMovimiento = 3;
 
+		this.crearRayosRender();
+	}
+
+	crearRayosRender()
+	{
 		//	VISIÓN (RENDER)
 		this.numRayos = Settings.canvasAncho;	// Cantidad de rayos que vamos a castear (los mismos que tenga el ancho del canvas)
 		this.rayos = [];						// Array con todos los rayos
 
 		//	CALCULAMOS EL ANGULO DE LOS RAYOS
-		var medioFOV 		 	 = Settings.FOV / 2;	
 		var incrementoAngulo	 = convierteRadianes(Settings.FOV / this.numRayos);
-		var anguloInicial 	 	 = convierteRadianes(this.anguloRotacion - medioFOV);
+		var anguloInicial 	 	 = convierteRadianes(this.anguloRotacion - Settings.FOV_MEDIO);
 		
 		var anguloRayo = anguloInicial;
 		
@@ -450,6 +454,74 @@ class Player
 
 			anguloRayo += incrementoAngulo;
 		}
+	}
+
+	actualiza()
+	{
+		//	AVANZAMOS
+		var nuevaX = this.x + this.avanza * Math.cos(this.anguloRotacion) * this.velMovimiento;
+		var nuevaY = this.y + this.avanza * Math.sin(this.anguloRotacion) * this.velMovimiento;
+		
+		if (!this.colision(nuevaX,nuevaY))
+		{
+			this.x = nuevaX;
+			this.y = nuevaY;
+		}
+
+		//	GIRAMOS
+		this.anguloRotacion += this.gira * this.velGiro;
+		this.anguloRotacion = normalizaAngulo(this.anguloRotacion);	// normalizamos
+		
+		
+		//	ACTUALIZAMOS LOS RAYOS
+		for (let i = 0; i < this.numRayos; i ++)
+		{
+			this.rayos[i].x = this.x;
+			this.rayos[i].y = this.y;
+			this.rayos[i].setAngulo(this.anguloRotacion);
+		}
+	}
+
+	dibuja()
+	{
+		this.actualiza();
+
+		// --------------------------------------------------------
+		//	RAYOS
+		// --------------------------------------------------------
+		for (let i = 0; i < this.numRayos; i ++)
+		{
+			this.rayos[i].dibuja();
+		}
+
+		if (!Settings.modo3D)
+		{
+			//	PUNTO (Jugador)
+			this.ctx.fillStyle = '#FFFFFF';
+			this.ctx.fillRect(this.x-3, this.y-3, 6,6);
+
+			//	LÍNEA DIRECCIÓN (apuntar hacia donde miramos)
+			var xDestino = this.x + Math.cos(this.anguloRotacion) * 40;// 40 es la longitud de la línea
+			var yDestino = this.y + Math.sin(this.anguloRotacion) * 40;
+
+			this.ctx.beginPath();
+			this.ctx.moveTo(this.x, this.y);
+			this.ctx.lineTo(xDestino, yDestino);
+			this.ctx.strokeStyle = "#eeeeee";
+			this.ctx.stroke();
+		}
+	}
+
+	colision(x, y)
+	{
+		var casillaX = Math.floor(x / this.escenario.anchoT);
+		var casillaY = Math.floor(y / this.escenario.altoT);
+		
+		if (this.escenario.colision(casillaX, casillaY))
+		{
+			return true;
+		}
+		return false;
 	}
 
 	// ---------------------------------------------------
@@ -483,74 +555,6 @@ class Player
 	giraSuelta()
 	{
 		this.gira = 0;
-	}
-
-	colision(x, y)
-	{
-		var casillaX = parseInt(x / this.escenario.anchoT);
-		var casillaY = parseInt(y / this.escenario.altoT);
-		
-		if (this.escenario.colision(casillaX, casillaY))
-		{
-			return true;
-		}
-		return false;
-	}
-
-	actualiza()
-	{
-		//	AVANZAMOS
-		var nuevaX = this.x + this.avanza * Math.cos(this.anguloRotacion) * this.velMovimiento;
-		var nuevaY = this.y + this.avanza * Math.sin(this.anguloRotacion) * this.velMovimiento;
-		
-		if (!this.colision(nuevaX,nuevaY))
-		{
-			this.x = nuevaX;
-			this.y = nuevaY;
-		}
-
-		//	GIRAMOS
-		this.anguloRotacion += this.gira * this.velGiro;
-		this.anguloRotacion = normalizaAngulo(this.anguloRotacion);	// normalizamos
-		
-		
-		//	ACTUALIZAMOS LOS RAYOS
-		for (let i = 0; i < this.numRayos; i ++)
-		{
-			this.rayos[i].x = this.x;
-			this.rayos[i].y = this.y;
-			this.rayos[i].setAngulo(this.anguloRotacion);
-		}
-	}
-
-	dibuja()
-	{
-		this.actualiza();
-
-		//	--------------------------------------------------------
-		//	RAYOS
-		//	--------------------------------------------------------
-		for (let i = 0; i < this.numRayos; i ++)
-		{
-			this.rayos[i].dibuja();
-		}
-
-		if (Settings.modo === 1)
-		{
-			//	PUNTO (Jugador)
-			this.ctx.fillStyle = '#FFFFFF';
-			this.ctx.fillRect(this.x-3, this.y-3, 6,6);
-
-			//	LÍNEA DIRECCIÓN (apuntar hacia donde miramos)
-			var xDestino = this.x + Math.cos(this.anguloRotacion) * 40;// 40 es la longitud de la línea
-			var yDestino = this.y + Math.sin(this.anguloRotacion) * 40;
-
-			this.ctx.beginPath();
-			this.ctx.moveTo(this.x, this.y);
-			this.ctx.lineTo(xDestino, yDestino);
-			this.ctx.strokeStyle = "#eeeeee";
-			this.ctx.stroke();
-		}
 	}
 }
 
@@ -623,7 +627,7 @@ class Sprite
 		this.actualizaDatos();
 
 		// punto mapa (Borrar)
-		if (Settings.modo === 1)
+		if (!Settings.modo3D)
 		{
 			ctx.fillStyle = '#FFFFFF';
 			ctx.fillRect(this.x-3, this.y-3, 6,6);
@@ -760,12 +764,12 @@ function buclePrincipal()
 {
 	borraCanvas();
 
-	if (Settings.modo === 1)
+	if (!Settings.modo3D)
 	{
 		escenario.dibuja();
 	}
 
-	if (Settings.modo === 0)
+	if (Settings.modo3D)
 	{
 		sueloTecho();
 	}

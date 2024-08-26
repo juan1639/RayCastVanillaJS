@@ -4,13 +4,13 @@
 // ----------------------------------------------------------------------
 import { Settings } from "../settings.js";
 
-function cambiaModo(modo)
+function cambiaModo(modo3D)
 {
-	if (modo === 0)
+	if (modo3D)
     {
-		return 1;
+		return false;
     }
-    return 0;
+    return true;
 }
 
 //-----------------------------------------------------------------------

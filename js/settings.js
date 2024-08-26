@@ -15,7 +15,7 @@ export class Settings
     static FOV = 60;
     static FOV_MEDIO = Settings.FOV / 2;
 
-    static modo = 0;// 0 = Pseudo3D, 1 = Mapa2D
+    static modo3D = true;// true = Pseudo3D, false = Mapa2D
 
     //	CARGAMOS TILES
 	static tiles = new Image();
