@@ -1,8 +1,5 @@
 import { Settings } from "../settings.js";
-import {
-    normalizaAngulo,
-    distanciaEntrePuntos
-} from "../functions/functions.js";
+import { normalizaAngulo, distanciaEntrePuntos } from "../functions/functions.js";
 
 export class Rayo
 {
