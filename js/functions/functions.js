@@ -3,6 +3,7 @@
 //  
 // ----------------------------------------------------------------------
 import { Settings } from "../settings.js";
+import { buclePrincipal } from '../main.js';
 
 function cambiaModo(bool)
 {
@@ -43,11 +44,31 @@ function distanciaEntrePuntos(x1, y1, x2, y2)
 
 function startGameValues()
 {
-	Settings.estado.menuConfig = false;
-	Settings.estado.enJuego = true;
+	const {estado, canvas, menuPreJuego, selectDim, selectFPS, reescalaCanvas} = Settings;
 
-	Settings.canvas.style.display = "block";
-	Settings.menuPreJuego.style.display = "none";
+	estado.menuConfig = false;
+	estado.enJuego = true;
+
+	canvas.style.display = "block";
+	menuPreJuego.style.display = "none";
+
+	Settings.FPS = parseInt(selectFPS.value);
+	console.log("FPS: " + Settings.FPS);
+
+	const valoresXY = selectDim.value.split('x');
+	reescalaCanvas.X = parseInt(valoresXY[0]);
+	reescalaCanvas.Y = parseInt(valoresXY[1]);
+
+	//	EMPEZAMOS A EJECUTAR EL BUCLE PRINCIPAL
+	setInterval(
+		function()
+		{
+			buclePrincipal();
+		}, 1000 / Settings.FPS
+	);
+
+	//	AMPLIAMOS EL CANVAS CON CSS
+	reescalarCanvas(reescalaCanvas.X, reescalaCanvas.Y);
 }
 
 //  PINTA COLORES BÁSICOS PARA SUELO Y TECHO

@@ -39,7 +39,8 @@ botonComenzar.addEventListener('click', (e) =>
 // ----------------------------------------------------------------------
 document.addEventListener('keydown',function(e)
 {
-	console.log(e.keyCode);
+	//console.log(e.keyCode);
+	
 	switch(e.keyCode){
 		
 		case 38:
@@ -162,14 +163,6 @@ document.addEventListener("DOMContentLoaded", () =>
 	//	CARGAMOS LOS SPRITES DESPUÉS DEL ESCENARIO Y EL JUGADOR
 	inicializaSprites();
 
-	//	EMPEZAMOS A EJECUTAR EL BUCLE PRINCIPAL
-	setInterval(
-		function()
-		{
-			buclePrincipal();
-		}, 1000 / FPS
-	);
-	
 	//	AMPLIAMOS EL CANVAS CON CSS
 	reescalarCanvas(reescalaCanvas.X, reescalaCanvas.Y);
 });
@@ -195,4 +188,4 @@ function buclePrincipal()
 	renderSprites();
 }
 
-export { jugador };
+export { jugador, buclePrincipal };
