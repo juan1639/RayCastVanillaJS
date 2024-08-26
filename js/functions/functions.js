@@ -53,6 +53,15 @@ function sueloTecho()
 	ctx.fillRect(0, 250, 500, 500);
 }
 
+// ------------------------------------------------------------------------------------
+//	MODIFICAMOS EL ESTILO CSS (por eso usamos canvas.style.width y no canvas.width)
+// ------------------------------------------------------------------------------------
+function reescalaCanvas(ancho, alto)
+{
+	Settings.canvas.style.width = ancho + "px";
+	Settings.canvas.style.height = alto + "px";
+}
+
 function borraCanvas()
 {
   Settings.canvas.width = canvas.width;
@@ -65,5 +74,6 @@ export {
     convierteRadianes,
     distanciaEntrePuntos,
     sueloTecho,
+    reescalaCanvas,
     borraCanvas
 };

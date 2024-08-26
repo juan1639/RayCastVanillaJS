@@ -16,7 +16,14 @@ export class Settings
     static FOV_MEDIO = Settings.FOV / 2;
 
     static modo = 0;// 0 = Pseudo3D, 1 = Mapa2D
-    
+
+    //	CARGAMOS TILES
+	static tiles = new Image();
+
+    //	Cargamos las imagenes para los SPRITES
+	static imgArmor = new Image();
+	static imgPlanta = new Image();
+
     // ----------------------------------------------------------------------
     // NIVELES (Arrays)
     // ----------------------------------------------------------------------

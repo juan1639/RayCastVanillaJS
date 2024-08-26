@@ -6,6 +6,7 @@ import {
 	normalizaAngulo,
 	distanciaEntrePuntos,
 	sueloTecho,
+	reescalaCanvas,
 	borraCanvas
 } from "./functions/functions.js";
 
@@ -14,6 +15,10 @@ import {
 // ----------------------------------------------------------------------
 var escenario;
 var jugador;
+//var ray;
+
+var sprites = [];	// array con los sprites
+var zBuffer = [];	// array con la distancia a cada pared (con cada rayo)
 
 // ----------------------------------------------------------------------
 // TECLADO (keydown)
@@ -332,7 +337,7 @@ class Rayo
 
 	renderPared()
 	{
-		const {ctx, canvasAlto} = Settings;
+		const {ctx, canvasAlto, tiles} = Settings;
 
 		var altoTile = 500;// Es la altura que tendrá el muro al renderizarlo
 		var alturaMuro = (altoTile / this.distancia) * this.distanciaPlanoProyeccion;
@@ -549,23 +554,6 @@ class Player
 	}
 }
 
-// ------------------------------------------------------------------------------------
-//	MODIFICAMOS EL ESTILO CSS (por eso usamos canvas.style.width y no canvas.width)
-// ------------------------------------------------------------------------------------
-function reescalaCanvas(ancho, alto){
-	canvas.style.width = ancho + "px";
-	canvas.style.height = alto + "px";
-}
-
-//-------------------------------------------------------------------------------------
-var ray;
-var tiles;
-var imgArmor;
-var imgPlanta;
- 
-var sprites = [];	//array con los sprites
-var zBuffer = [];	//array con la distancia a cada pared (con cada rayo)
- 
 // -------------------------------------------------------------------------------------
 //	SPRITES
 // -------------------------------------------------------------------------------------
@@ -699,6 +687,20 @@ class Sprite
 	}
 }
 
+function inicializaSprites()
+{
+	const {imgArmor, imgPlanta} = Settings;
+
+	imgArmor.src = "img/armor.png";
+	imgPlanta.src = "img/planta.png";
+	
+	//	CREAMOS LOS OBJETOS PARA LAS IMÁGENES
+	sprites[0] = new Sprite(300, 120, imgArmor);
+	sprites[1] = new Sprite(150, 150, imgArmor);
+	sprites[2] = new Sprite(320, 300, imgPlanta);
+	sprites[3] = new Sprite(300, 380, imgPlanta);
+}
+
 // -------------------------------------------------------------------------------------
 //	ALGORITMO DEL PINTOR, ORDENAMOS LOS SPRITES DE MÁS LEJANO AL JUGADOR A MÁS CERCANO
 // -------------------------------------------------------------------------------------
@@ -722,32 +724,14 @@ function renderSprites()
 	}
 }
 
-function inicializaSprites()
-{
-	//	CARGAMOS SPRITES
-	imgArmor = new Image();
-	imgArmor.src = "img/armor.png";
-
-	imgPlanta = new Image();
-	imgPlanta.src = "img/planta.png";
-
-	//	CREAMOS LOS OBJETOS PARA LAS IMÁGENES
-	sprites[0] = new Sprite(300, 120, imgArmor);
-	sprites[1] = new Sprite(150, 150, imgArmor);
-	sprites[2] = new Sprite(320, 300, imgPlanta);
-	sprites[3] = new Sprite(300, 380, imgPlanta);
-}
-
 // ============================================================================
 //	FUNCION INICIALIZADORA
 //	
 // ----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () =>
 {
-	const {canvas, ctx, FPS, canvasAncho, canvasAlto, nivel_1} = Settings;
+	const {canvas, ctx, FPS, canvasAncho, canvasAlto, tiles, nivel_1} = Settings;
 
-	//	CARGAMOS TILES
-	tiles = new Image();
 	tiles.src= "img/walls.png";
 
 	//	MODIFICA EL TAMAÑO DEL CANVAS
@@ -771,8 +755,6 @@ document.addEventListener("DOMContentLoaded", () =>
 	//	AMPLIAMOS EL CANVAS CON CSS
 	reescalaCanvas(1024, 768);
 });
-
-
 
 function buclePrincipal()
 {
