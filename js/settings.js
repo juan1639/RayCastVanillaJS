@@ -38,7 +38,7 @@ export class Settings
     //	CARGAMOS TILES
 	static tiles = new Image();
 	static tilesVert = new Image();
-
+    
     //	Cargamos las imagenes para los SPRITES
 	static imgArmor = new Image();
 	static imgPlanta = new Image();

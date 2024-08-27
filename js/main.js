@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
 	tiles.src = "img/walls2.png";
 	tilesVert.src = "img/walls2vert.png";
-
+	
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
 	canvas.height = canvasAlto;

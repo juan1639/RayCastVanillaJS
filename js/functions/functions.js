@@ -74,13 +74,13 @@ function startGameValues()
 //  PINTA COLORES BÁSICOS PARA SUELO Y TECHO
 function sueloCielo(colorCielo, colorSuelo)
 {
-    const {ctx} = Settings;
+    const {ctx, canvasAncho, canvasAlto} = Settings;
 
 	ctx.fillStyle = colorCielo;
-	ctx.fillRect(0, 0, 500, 250);
+	ctx.fillRect(0, 0, canvasAncho, canvasAlto);
 	
 	ctx.fillStyle = colorSuelo;
-	ctx.fillRect(0, 250, 500, 500);
+	ctx.fillRect(0, canvasAlto / 2, canvasAncho, canvasAlto);
 }
 
 // ------------------------------------------------------------------------------------
