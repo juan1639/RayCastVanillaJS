@@ -211,10 +211,10 @@ export class Rayo
 			this.wallHitY = this.wallHitYHorizontal;
 			this.distancia = distanciaHorizontal;
 			this.colorPared = Settings.COLORES.PARED_OSCURO;
+			this.tileHorVer = Settings.tiles;
 			//	PIXEL TEXTURA
 			var casilla = parseInt(this.wallHitX / tamTile);
 			this.pixelTextura = this.wallHitX - (casilla * tamTile);
-			
 			//	ID TEXTURA
 			this.idTextura = this.escenario.tile(this.wallHitX, this.wallHitY);
 		}
@@ -224,9 +224,10 @@ export class Rayo
 			this.wallHitY = this.wallHitYVertical;
 			this.distancia = distanciaVertical;
 			this.colorPared = Settings.COLORES.PARED_CLARO;
+			this.tileHorVer = Settings.tilesVert;
 			//	PIXEL TEXTURA
-			var casilla = parseInt(this.wallHitY / tamTile) * tamTile;
-			this.pixelTextura = this.wallHitY - casilla;
+			var casilla = Math.floor(this.wallHitY / tamTile) * tamTile;
+			this.pixelTextura = this.wallHitY - casilla + tamTile;
 			//	ID TEXTURA
 			this.idTextura = this.escenario.tile(this.wallHitX, this.wallHitY);
 		}
@@ -265,7 +266,7 @@ export class Rayo
 
 	renderPared()
 	{
-		const {ctx, canvasAlto, tiles, renderConTexturas} = Settings;
+		const {ctx, canvasAlto, renderConTexturas} = Settings;
 
 		var altoTile = 500;// Es la altura que tendrá el muro al renderizarlo
 		var alturaMuro = (altoTile / this.distancia) * this.distanciaPlanoProyeccion;
@@ -295,14 +296,14 @@ export class Rayo
 			ctx.imageSmoothingEnabled = false;// PIXELAMOS LA IMAGEN
 
 			ctx.drawImage(
-				tiles,
+				this.tileHorVer,
 				this.pixelTextura,
 				((this.idTextura -1 ) * altoTextura),
-				this.pixelTextura,
+				2,
 				63,
 				x,
 				y1 + altura,
-				1,
+				2,
 				alturaTextura
 			);
 		}	

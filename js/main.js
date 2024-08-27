@@ -37,7 +37,7 @@ botonComenzar.addEventListener('click', (e) =>
 // ----------------------------------------------------------------------
 // TECLADO (keydown)
 // ----------------------------------------------------------------------
-document.addEventListener('keydown',function(e)
+document.addEventListener('keydown', function(e)
 {
 	//console.log(e.keyCode);
 	
@@ -65,7 +65,7 @@ document.addEventListener('keydown',function(e)
 // ----------------------------------------------------------------------
 // TECLADO (keyup)
 // ----------------------------------------------------------------------
-document.addEventListener('keyup',function(e)
+document.addEventListener('keyup', function(e)
 {		
 	switch(e.keyCode){	
 		
@@ -147,11 +147,13 @@ document.addEventListener("DOMContentLoaded", () =>
 		FPS,
 		canvasAncho, canvasAlto,
 		tiles,
+		tilesVert,
 		nivel_1,
 		reescalaCanvas
 	} = Settings;
 
-	tiles.src= "img/walls.png";
+	tiles.src = "img/walls2.png";
+	tilesVert.src = "img/walls2vert.png";
 
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
