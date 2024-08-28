@@ -6,7 +6,12 @@ export class Settings
     static selectFPS = document.getElementById('fps');
     static selectDim = document.getElementById('dimensiones');
     static selectSmooth = document.getElementById('smoothing');
+
     static botonera = document.getElementById('botonera');
+    static botonUp = document.getElementById('boton__up');
+    static botoneLe = document.getElementById('boton__le');
+    static botoneRi = document.getElementById('botone__ri');
+    static botoneDo = document.getElementById('botone__do');
     
     static canvas = document.getElementById('canvas');
 	static ctx = canvas.getContext('2d');

@@ -59,7 +59,6 @@ document.addEventListener('keydown', function(e)
 		case 37:
 			jugador.izquierda();
 		break;
-		
 	}
 });
 
@@ -96,6 +95,72 @@ document.addEventListener('keyup', function(e)
 
 		case 16:
 			Settings.renderConTexturas = cambiaModo(Settings.renderConTexturas);
+		break;
+	}
+});
+
+// ----------------------------------------------------------------------
+// Mobile (touchstart)
+// ----------------------------------------------------------------------
+document.addEventListener('touchstart', function(e)
+{
+	console.log(e.target.id);
+	
+	switch(e.target.id)
+	{
+		case 'boton__up':
+			jugador.arriba();
+		break;
+		
+		case 'boton__do':
+			jugador.abajo();
+		break;
+		
+		case 'boton__ri':
+			jugador.derecha();
+		break;
+		
+		case 'boton__le':
+			jugador.izquierda();
+		break;
+
+		case 'boton__fire':
+			console.log('disparo!');
+		break;
+
+		case 'boton__mapa':
+			Settings.modo3D = cambiaModo(Settings.modo3D);
+		break;
+
+		case 'boton__texturas':
+			Settings.renderConTexturas = cambiaModo(Settings.renderConTexturas);
+		break;
+	}
+});
+
+// ----------------------------------------------------------------------
+// Mobile (touchend)
+// ----------------------------------------------------------------------
+document.addEventListener('touchend', function(e)
+{
+	//console.log(e.target.id);
+	
+	switch(e.target.id)
+	{
+		case 'boton__up':
+			jugador.avanzaSuelta();
+		break;
+		
+		case 'boton__do':
+			jugador.avanzaSuelta();
+		break;
+		
+		case 'boton__ri':
+			jugador.giraSuelta();
+		break;
+		
+		case 'boton__le':
+			jugador.giraSuelta();
 		break;
 	}
 });
