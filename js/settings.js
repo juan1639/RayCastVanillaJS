@@ -4,6 +4,7 @@ export class Settings
     static menuPreJuego = document.getElementById('pre-menu');
     static selectFPS = document.getElementById('fps');
     static selectDim = document.getElementById('dimensiones');
+    static selectSmooth = document.getElementById('smoothing');
     
     static canvas = document.getElementById('canvas');
 	static ctx = canvas.getContext('2d');
@@ -34,6 +35,7 @@ export class Settings
 
     static modo3D = true;// true = Pseudo3D, false = Mapa2D
     static renderConTexturas = true;
+    static modoSmoothing = false;
 
     //	CARGAMOS TILES
 	static tiles = new Image();

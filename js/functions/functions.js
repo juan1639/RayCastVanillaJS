@@ -44,7 +44,15 @@ function distanciaEntrePuntos(x1, y1, x2, y2)
 
 function startGameValues()
 {
-	const {estado, canvas, menuPreJuego, selectDim, selectFPS, reescalaCanvas} = Settings;
+	const {
+		estado,
+		canvas,
+		menuPreJuego,
+		selectDim,
+		selectFPS,
+		selectSmooth,
+		reescalaCanvas
+	} = Settings;
 
 	estado.menuConfig = false;
 	estado.enJuego = true;
@@ -58,6 +66,8 @@ function startGameValues()
 	const valoresXY = selectDim.value.split('x');
 	reescalaCanvas.X = parseInt(valoresXY[0]);
 	reescalaCanvas.Y = parseInt(valoresXY[1]);
+
+	Settings.modoSmoothing = selectSmooth.value === "true" ? true : false;
 
 	//	EMPEZAMOS A EJECUTAR EL BUCLE PRINCIPAL
 	setInterval(

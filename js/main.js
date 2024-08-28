@@ -152,8 +152,12 @@ document.addEventListener("DOMContentLoaded", () =>
 		reescalaCanvas
 	} = Settings;
 
-	tiles.src = "img/walls2.png";
-	tilesVert.src = "img/walls2vert.png";
+	tiles.src = "img/walls7.png";
+	tilesVert.src = "img/walls7vert.png";
+
+	console.log(tiles.height, tilesVert.height);
+	console.log(tiles.width, tilesVert.width);
+	console.log(Settings.modoSmoothing);
 	
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
@@ -172,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () =>
 function buclePrincipal()
 {
 	const {modo3D, COLORES} = Settings;
-
+	
 	borraCanvas();
 
 	if (!modo3D)

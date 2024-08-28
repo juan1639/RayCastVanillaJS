@@ -266,7 +266,7 @@ export class Rayo
 
 	renderPared()
 	{
-		const {ctx, canvasAlto, renderConTexturas} = Settings;
+		const {ctx, canvasAlto, renderConTexturas, modoSmoothing} = Settings;
 
 		var altoTile = 500;// Es la altura que tendrá el muro al renderizarlo
 		var alturaMuro = (altoTile / this.distancia) * this.distanciaPlanoProyeccion;
@@ -282,6 +282,10 @@ export class Rayo
 		
 		var altura = 0;// borrar cuando usemos el código de abajo
 
+		const anchoClip = 1;
+		const altoClip = 63;
+		const anchoRenderRayo = 1;
+
 		if (!renderConTexturas)
 		{
 			// DIBUJAMOS *** SIN Texturas ***
@@ -293,22 +297,23 @@ export class Rayo
 			//	DIBUJAMOS *** CON Texturas ***
 			var altoTextura = 64;
 			var alturaTextura = y0 - y1;
-			ctx.imageSmoothingEnabled = false;// PIXELAMOS LA IMAGEN
+
+			ctx.imageSmoothingEnabled = modoSmoothing;// true = PIXELAMOS LA IMAGEN
 
 			ctx.drawImage(
 				this.tileHorVer,
 				this.pixelTextura,
 				((this.idTextura -1 ) * altoTextura),
-				2,
-				63,
+				anchoClip,
+				altoClip,
 				x,
 				y1 + altura,
-				2,
+				anchoRenderRayo,
 				alturaTextura
 			);
 		}	
 	}
-
+	
 	dibuja()
 	{
 		// -----------------------------------------------------
