@@ -157,8 +157,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
 	console.log(tiles.height, tilesVert.height);
 	console.log(tiles.width, tilesVert.width);
-	console.log(Settings.modoSmoothing);
-	
+		
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
 	canvas.height = canvasAlto;

@@ -53,8 +53,8 @@ export class Settings
         //SUELO: '#752300'
         SUELO: '#474747',
         CIELO: '#8CBED6',
-        PARED_CLARO: '#aaaaaa',
-        PARED_OSCURO: '#929292',
+        PARED_CLARO: '#909090',
+        PARED_OSCURO: '#737373',
     };
 
     // ----------------------------------------------------------------------

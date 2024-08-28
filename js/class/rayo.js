@@ -210,6 +210,7 @@ export class Rayo
 			this.wallHitX = this.wallHitXHorizontal;
 			this.wallHitY = this.wallHitYHorizontal;
 			this.distancia = distanciaHorizontal;
+			//	SELECT: SIN Texturas COLOR / CON TETURAS grafico
 			this.colorPared = Settings.COLORES.PARED_OSCURO;
 			this.tileHorVer = Settings.tiles;
 			//	PIXEL TEXTURA
@@ -223,6 +224,7 @@ export class Rayo
 			this.wallHitX = this.wallHitXVertical;
 			this.wallHitY = this.wallHitYVertical;
 			this.distancia = distanciaVertical;
+			//	SELECT: SIN Texturas COLOR / CON TETURAS grafico
 			this.colorPared = Settings.COLORES.PARED_CLARO;
 			this.tileHorVer = Settings.tilesVert;
 			//	PIXEL TEXTURA
