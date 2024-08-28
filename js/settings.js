@@ -1,3 +1,4 @@
+import { Escenarios } from "./escenarios.js";
 
 export class Settings
 {
@@ -11,11 +12,12 @@ export class Settings
 
     static FPS = 100;
     
-    //  DIMENSIONES EN PIXELS DEL CANVAS
-    static canvasAncho = 500;
-    static canvasAlto = 500;
+    //  Tamaño de los tiles 64x64
+    static tamTile = 64;
 
-    static tamTile = 50;
+    //  DIMENSIONES EN PIXELS DEL CANVAS
+    static canvasAncho = Escenarios.nivel_1[0].length * Settings.tamTile;
+    static canvasAlto = Escenarios.nivel_1.length * Settings.tamTile;
 
     //  REESCALA-CANVAS (Default)
     static reescalaCanvas =
@@ -44,9 +46,18 @@ export class Settings
     //	Cargamos las imagenes para los SPRITES
 	static imgArmor = new Image();
 	static imgPlanta = new Image();
+	static imgMesa = new Image();
     
     // array con la distancia a cada pared (con cada rayo)
     static zBuffer = [];
+
+    static PUNTITOS =
+    {
+        MAPA2D: {
+            ANCHO: 6,
+            ALTO: 6,
+        }
+    };
     
     static COLORES =
     {
@@ -56,44 +67,4 @@ export class Settings
         PARED_CLARO: '#909090',
         PARED_OSCURO: '#737373',
     };
-
-    // ----------------------------------------------------------------------
-    // NIVELES (Arrays)
-    // ----------------------------------------------------------------------
-    static nivel_1 = [
-        [1,1,2,1,1,1,2,2,1,1],
-        [1,0,0,0,0,0,0,1,1,1],
-        [1,0,0,0,0,0,0,1,1,1],
-        [1,0,0,0,0,0,0,0,0,3],
-        [1,0,1,2,1,0,0,0,0,1],
-        [1,0,0,0,1,0,0,0,0,1],
-        [1,0,0,0,1,0,0,3,3,1],
-        [1,0,0,1,1,0,0,1,1,1],
-        [1,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,1]
-    ];
-
-    static nivel_2 = [
-        [1,1,2,1,1,1,2,2,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,2],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3],
-        [1,0,0,0,1,0,0,3,3,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    ];
 }

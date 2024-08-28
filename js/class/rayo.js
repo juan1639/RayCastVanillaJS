@@ -286,7 +286,7 @@ export class Rayo
 
 		const anchoClip = 1;
 		const altoClip = 63;
-		const anchoRenderRayo = 1;
+		const anchoRenderRayo = 4;
 
 		if (!renderConTexturas)
 		{

@@ -25,14 +25,14 @@ export class Sprite
 		var anguloJugadorObjeto = Math.atan2(vectY, vectX);
 		var diferenciaAngulo = jugador.anguloRotacion - anguloJugadorObjeto;
 
-		if (diferenciaAngulo < -3.14159)
+		if (diferenciaAngulo < -Math.PI)
 		{
-			diferenciaAngulo += 2.0 * 3.14159;
+			diferenciaAngulo += 2.0 * Math.PI;
 		}
 
-		if (diferenciaAngulo > 3.14159)
+		if (diferenciaAngulo > Math.PI)
 		{
-			diferenciaAngulo -= 2.0 * 3.14159;
+			diferenciaAngulo -= 2.0 * Math.PI;
 		}
 
 		diferenciaAngulo = Math.abs(diferenciaAngulo);
@@ -60,7 +60,7 @@ export class Sprite
 
 	dibuja()
 	{
-		const {ctx, canvasAncho, canvasAlto, FOV, zBuffer} = Settings;
+		const {ctx, canvasAncho, canvasAlto, FOV, zBuffer, modoSmoothing, PUNTITOS} = Settings;
 
 		this.actualizaDatos();
 
@@ -68,7 +68,12 @@ export class Sprite
 		if (!Settings.modo3D)
 		{
 			ctx.fillStyle = '#FFFFFF';
-			ctx.fillRect(this.x-3, this.y-3, 6,6);
+			ctx.fillRect(
+				this.x - PUNTITOS.MAPA2D.ANCHO / 2,
+				this.y - PUNTITOS.MAPA2D.ALTO / 2,
+				PUNTITOS.MAPA2D.ANCHO,
+				PUNTITOS.MAPA2D.ALTO
+			);
 		}
 
 		if (this.visible)
@@ -103,7 +108,7 @@ export class Sprite
 			var x = (canvasAncho/2 + x0 - anchuraTextura/2);
 
 			// -----------------------------------------------------------------------------
-			ctx.imageSmoothingEnabled = false;	// PIXELAMOS LA IMAGEN
+			ctx.imageSmoothingEnabled = modoSmoothing;	// PIXELAMOS LA IMAGEN
 
 			// 	Proporción de anchura de X (según nos acerquemos, se verán más anchas las líneas verticales)
 			var anchuraColumna = alturaTextura/altoTextura;

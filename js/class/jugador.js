@@ -92,9 +92,16 @@ export class Player
 
 		if (!Settings.modo3D)
 		{
+			const {PUNTITOS} = Settings;
+			
 			//	PUNTO (Jugador)
 			this.ctx.fillStyle = '#FFFFFF';
-			this.ctx.fillRect(this.x-3, this.y-3, 6,6);
+			this.ctx.fillRect(
+				this.x - PUNTITOS.MAPA2D.ANCHO / 2,
+				this.y - PUNTITOS.MAPA2D.ALTO / 2,
+				PUNTITOS.MAPA2D.ANCHO,
+				PUNTITOS.MAPA2D.ALTO
+			);
 
 			//	LÍNEA DIRECCIÓN (apuntar hacia donde miramos)
 			var xDestino = this.x + Math.cos(this.anguloRotacion) * 40;// 40 es la longitud de la línea

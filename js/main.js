@@ -2,6 +2,7 @@ import { Level } from "./class/escenario.js";
 import { Player } from './class/jugador.js';
 import { Sprite } from "./class/sprites/sprite.js";
 import { Settings } from "./settings.js";
+import { Escenarios } from "./escenarios.js";
 
 import {
 	startGameValues,
@@ -101,16 +102,20 @@ document.addEventListener('keyup', function(e)
 
 function inicializaSprites()
 {
-	const {imgArmor, imgPlanta} = Settings;
+	const {imgArmor, imgPlanta, imgMesa, tamTile} = Settings;
+
+	const midTamTile = tamTile / 2;
 
 	imgArmor.src = "img/armor.png";
 	imgPlanta.src = "img/planta.png";
+	imgMesa.src = "img/mesa.png";
 	
 	//	CREAMOS LOS OBJETOS PARA LAS IMÁGENES
-	sprites[0] = new Sprite(300, 120, imgArmor);
-	sprites[1] = new Sprite(150, 150, imgArmor);
-	sprites[2] = new Sprite(320, 300, imgPlanta);
-	sprites[3] = new Sprite(300, 380, imgPlanta);
+	sprites[0] = new Sprite(8 * tamTile, 8 * tamTile + midTamTile, imgArmor);
+	sprites[1] = new Sprite(5 * tamTile + midTamTile, 2 * tamTile + midTamTile, imgArmor);
+	sprites[2] = new Sprite(6 * tamTile, 5 * tamTile, imgPlanta);
+	sprites[3] = new Sprite(1 * tamTile + midTamTile, 8 * tamTile + midTamTile, imgPlanta);
+	sprites[4] = new Sprite(8 * tamTile, 4 * tamTile + midTamTile, imgMesa);
 }
 
 // -------------------------------------------------------------------------------------
@@ -148,21 +153,20 @@ document.addEventListener("DOMContentLoaded", () =>
 		canvasAncho, canvasAlto,
 		tiles,
 		tilesVert,
-		nivel_1,
 		reescalaCanvas
 	} = Settings;
 
 	tiles.src = "img/walls7.png";
 	tilesVert.src = "img/walls7vert.png";
 
-	console.log(tiles.height, tilesVert.height);
+	console.log(tiles.width, tilesVert.height);
 	console.log(tiles.width, tilesVert.width);
-		
+
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
 	canvas.height = canvasAlto;
 
-	escenario = new Level(canvas, ctx, nivel_1);
+	escenario = new Level(canvas, ctx, Escenarios.nivel_1);
 	jugador = new Player(ctx, escenario, 100, 100);
 
 	//	CARGAMOS LOS SPRITES DESPUÉS DEL ESCENARIO Y EL JUGADOR
