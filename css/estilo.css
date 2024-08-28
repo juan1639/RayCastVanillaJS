@@ -141,3 +141,144 @@ button:hover {
 button:active {
   transform: translateY(9px);
 }
+
+/*---------------------------------------------------------
+BOTONES < CONTROLES & NUEVA PARTIDA >
+---------------------------------------------------------*/
+#botonera {
+  width: 95%;
+  justify-content: space-between;
+  /* *** toggle display:flex *** */
+  display: none;
+}
+
+.botonesControl, .botonesResto {
+  width: 47%;
+	display: flex;
+  flex-direction: column;
+	border-radius: 5px;
+	border: none;
+	background-color: none;
+  margin-top: -42%;
+  opacity: 0.3;
+}
+
+.botonesResto {
+  justify-content: flex-end;
+}
+
+.boton-control {
+  display: flex;
+  justify-content: center;
+}
+
+.boton {
+	width: fit-content;
+	height: fit-content;
+	border-radius: 6px;
+	font-size: 24px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	padding: 5px 25px 7px 25px;
+	outline: none;
+}
+
+.boton:active {
+	transform: translate(-2px, -4px);
+}
+
+.controles {
+	height: 60px;
+	color: black;
+	border-radius: 6px;
+	background: linear-gradient(#CCC, #777);
+	font-size: 30px;
+	font-weight: bold;
+	box-shadow: inset -3px -2px 2px rgba(0, 0, 0, 0.7);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+
+#boton__up {
+	width: 100%;
+	border-radius: 90% 90% 0 0;
+}
+
+#boton__do {
+	width: 100%;
+	border-radius: 0 0 90% 90%;
+}
+
+#boton__ri, #boton__le {
+  width: 49%;
+}
+
+#boton__fire {
+  width: 99%;
+  height: 80px;
+}
+
+#boton__mapa, #boton__texturas {
+  width: 90%;
+  height: 40px;
+}
+
+/*=========================================================
+M E D I A
+---------------------------------------------------------*/
+@media (max-width: 576px) {
+  canvas {
+    width: 200px;
+    height: 200px;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  #pre-menu {
+    padding: 0.6em;
+  }
+  
+  #contenedor-pre-menu {
+    width: 100%;
+    height: 90%;
+    padding: 0.6em;
+    text-shadow: 1px 1px 1px rgba(1, 1, 1, 0.9);
+  }
+
+  .encabezado {
+    padding-top: 1.2em;
+    padding-bottom: 0.2em;
+  }
+  
+  .cuerpo {
+    font-size: 12px;
+    padding: 0.4em;
+    /* border-style: solid; */
+    /* gap: 1em; */
+  }
+  
+  .opcion-menu {
+    margin-top: 0.6em;
+  }
+
+  .boton-submit {
+    margin-top: 1.2em;
+  }
+  
+  #durante-juego {
+    margin-top: 0.6em;
+    padding-bottom: 0.2em;
+  }
+  
+  button {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0.4em 1em;
+  }
+}

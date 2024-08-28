@@ -42,8 +42,8 @@ document.addEventListener('keydown', function(e)
 {
 	//console.log(e.keyCode);
 	
-	switch(e.keyCode){
-		
+	switch(e.keyCode)
+	{
 		case 38:
 			jugador.arriba();
 		break;
@@ -68,8 +68,8 @@ document.addEventListener('keydown', function(e)
 // ----------------------------------------------------------------------
 document.addEventListener('keyup', function(e)
 {		
-	switch(e.keyCode){	
-		
+	switch(e.keyCode)
+	{
 		case 38:
 			jugador.avanzaSuelta();
 		break;
@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () =>
 	const {
 		canvas, ctx,
 		FPS,
+		tamTile,
 		canvasAncho, canvasAlto,
 		tiles,
 		tilesVert,
@@ -166,8 +167,10 @@ document.addEventListener("DOMContentLoaded", () =>
 	canvas.width = canvasAncho;
 	canvas.height = canvasAlto;
 
+	const midTamTile = tamTile / 2;
+
 	escenario = new Level(canvas, ctx, Escenarios.nivel_1);
-	jugador = new Player(ctx, escenario, 100, 100);
+	jugador = new Player(ctx, escenario, 1 * tamTile + midTamTile, 1 * tamTile + midTamTile);
 
 	//	CARGAMOS LOS SPRITES DESPUÉS DEL ESCENARIO Y EL JUGADOR
 	inicializaSprites();

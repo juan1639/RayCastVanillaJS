@@ -51,7 +51,8 @@ function startGameValues()
 		selectDim,
 		selectFPS,
 		selectSmooth,
-		reescalaCanvas
+		reescalaCanvas,
+		botonera
 	} = Settings;
 
 	estado.menuConfig = false;
@@ -68,6 +69,11 @@ function startGameValues()
 	reescalaCanvas.Y = parseInt(valoresXY[1]);
 
 	Settings.modoSmoothing = selectSmooth.value === "true" ? true : false;
+
+	if (reescalaCanvas.X < 576)
+	{
+		botonera.style.display = 'flex';
+	}
 
 	//	EMPEZAMOS A EJECUTAR EL BUCLE PRINCIPAL
 	setInterval(

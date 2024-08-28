@@ -22,7 +22,7 @@
                 <div class="opcion-menu">
                     <span>FPS</span>
                     <select name="fps" id="fps"
-                        style="font-size: 18px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
+                        style="font-size: 16px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
                         <option value="40">40</option>
                         <option value="50">50</option>
                         <option value="60" selected>60</option>
@@ -34,7 +34,8 @@
                 <div class="opcion-menu">
                     <span>Dimensiones</span>
                     <select name="dimensiones" id="dimensiones"
-                        style="font-size: 18px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
+                        style="font-size: 16px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
+                        <option value="320x320">mobile</option>
                         <option value="640x480">640x480</option>
                         <option value="800x600">800x600</option>
                         <option value="1120x630" selected>1120x630</option>
@@ -45,7 +46,7 @@
                 <div class="opcion-menu">
                     <span>Modo Smoothing</span>
                     <select name="smoothing" id="smoothing"
-                        style="font-size: 18px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
+                        style="font-size: 16px; padding: 0.2em 0.6em; color: #797000; border-radius: 4px;">
                         <option value="true">Habilitado</option>
                         <option value="false" selected>Desabilitado</option>
                     </select>
@@ -77,5 +78,36 @@
     <!-- ************ C A N V A S *********** -->
     <canvas id="canvas"></canvas>
     <!-- ************************************ -->
+
+    <div id="botonera">
+        <section class='botonesControl' id='botonesControl'>
+            <div class="boton-control" id="contenendor-up">
+                <button class='boton controles' id='boton__up'>Up</button>
+            </div>
+
+            <div class="boton-control" id="contenedor-le-ri">
+                <button class='boton controles' id='boton__le'>Le</button>
+                <button class='boton controles' id='boton__ri'>Ri</button>
+            </div>
+
+            <div class="boton-control" id="contenedor-do">
+                <button class='boton controles' id='boton__do'>Do</button>
+            </div>
+        </section>
+
+        <section class='botonesResto' id='botonesResto'>
+            <div class="boton-control" id="contenedor-Texturas">
+                <button class='boton controles' id='boton__texturas'>Txt</button>
+            </div>
+
+            <div class="boton-control" id="contenedor-mapa">
+                <button class='boton controles' id='boton__mapa'>Map</button>
+            </div>
+
+            <div class="boton-control" id="contenendor-fire">
+                <button class='boton controles' id='boton__fire'>Fire</button>
+            </div>
+        </section>
+    </div>  
 </body>
 </html>

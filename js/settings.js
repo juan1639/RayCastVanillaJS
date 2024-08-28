@@ -6,6 +6,7 @@ export class Settings
     static selectFPS = document.getElementById('fps');
     static selectDim = document.getElementById('dimensiones');
     static selectSmooth = document.getElementById('smoothing');
+    static botonera = document.getElementById('botonera');
     
     static canvas = document.getElementById('canvas');
 	static ctx = canvas.getContext('2d');
