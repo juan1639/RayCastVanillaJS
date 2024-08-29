@@ -50,11 +50,11 @@ export class Level
             {
 				if (this.matriz[y][x] !== 0)
                 {
-					color = '#111';
+					color = Settings.COLORES.PARED_CLARO;
                 }
 				else
                 {
-					color = '#777';
+					color = Settings.COLORES.SUELO;
                 }
 				
 				this.ctx.fillStyle = color;

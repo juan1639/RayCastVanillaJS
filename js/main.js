@@ -216,7 +216,8 @@ document.addEventListener("DOMContentLoaded", () =>
 		canvas, ctx,
 		FPS,
 		tamTile,
-		canvasAncho, canvasAlto,
+		canvasAncho,
+		canvasAlto,
 		tiles,
 		tilesVert,
 		reescalaCanvas
@@ -231,6 +232,9 @@ document.addEventListener("DOMContentLoaded", () =>
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
 	canvas.height = canvasAlto;
+
+	console.log(canvas.width);
+	console.log(canvas.height);
 
 	const midTamTile = tamTile / 2;
 

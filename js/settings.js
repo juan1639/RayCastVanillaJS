@@ -72,5 +72,8 @@ export class Settings
         CIELO: '#8CBED6',
         PARED_CLARO: '#909090',
         PARED_OSCURO: '#737373',
+        FOV_2D: '#ffff99',
+        PUNTITO_SPRITE: '#ff3909',
+        PUNTITO_JUGADOR: '#35ff11',
     };
 }

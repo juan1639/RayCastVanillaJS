@@ -95,7 +95,7 @@ export class Player
 			const {PUNTITOS} = Settings;
 			
 			//	PUNTO (Jugador)
-			this.ctx.fillStyle = '#FFFFFF';
+			this.ctx.fillStyle = Settings.COLORES.PUNTITO_JUGADOR;
 			this.ctx.fillRect(
 				this.x - PUNTITOS.MAPA2D.ANCHO / 2,
 				this.y - PUNTITOS.MAPA2D.ALTO / 2,

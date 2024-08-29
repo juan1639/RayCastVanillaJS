@@ -339,7 +339,7 @@ export class Rayo
 			this.ctx.beginPath();
 			this.ctx.moveTo(this.x, this.y);
 			this.ctx.lineTo(xDestino, yDestino);
-			this.ctx.strokeStyle = "red";
+			this.ctx.strokeStyle = Settings.COLORES.FOV_2D;
 			this.ctx.stroke();
 		}
 	}

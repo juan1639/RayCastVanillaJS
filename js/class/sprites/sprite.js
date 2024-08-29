@@ -67,7 +67,7 @@ export class Sprite
 		// punto mapa (Borrar)
 		if (!Settings.modo3D)
 		{
-			ctx.fillStyle = '#FFFFFF';
+			ctx.fillStyle = Settings.COLORES.PUNTITO_SPRITE;
 			ctx.fillRect(
 				this.x - PUNTITOS.MAPA2D.ANCHO / 2,
 				this.y - PUNTITOS.MAPA2D.ALTO / 2,
@@ -76,7 +76,7 @@ export class Sprite
 			);
 		}
 
-		if (this.visible)
+		if (this.visible && Settings.modo3D)
 		{
 			var altoTile = 500;		//Es la altura que tendrá el SPRITE al renderizarlo
 			var distanciaPlanoProyeccion = (canvasAncho / 2) / Math.tan(FOV / 2);
