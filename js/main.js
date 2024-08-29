@@ -203,7 +203,7 @@ function inicializaArmasJugador()
 		canvasAncho,
 		canvasAlto
 	} = Settings;
-
+	
 	imgPistola.src = "img/dPist.png";
 	imgPistolaRecargar.src = "img/dPist.png";
 	imgEscopeta.src = "img/dEscop.png";
@@ -215,7 +215,10 @@ function inicializaArmasJugador()
 
 function dibujaArmasJugador()
 {
-	armas[Settings.seleccArma].dibuja();
+	if (armas[Settings.seleccArma])
+	{
+		armas[Settings.seleccArma].dibuja();
+	}
 }
 
 function inicializaSprites()

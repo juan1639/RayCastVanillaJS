@@ -6,20 +6,25 @@ export class Arma
 	{
 		this.x = x;
 		this.y = y;
-		this.imagen = imagen;
+
+        imagen.onload = () =>
+        {
+            this.imagen = imagen;
+
+            this.ancho = Math.floor(this.imagen.width / 3);
+            this.alto = Math.floor(this.imagen.height);
+
+            this.anchoRec = Math.floor(this.imagenRecargar.width / 3);
+            this.altoRec = Math.floor(this.imagenRecargar.height);
+            
+            console.log(this.ancho, this.alto);
+        }
+        
 		this.imagenRecargar = imagenRecargar;
         this.sonidoArma = sonido;
 
 		this.visible = true;
 		this.scale = 2;
-
-        this.ancho = Math.floor(this.imagen.width / 3);
-        this.alto = Math.floor(this.imagen.height);
-
-        this.anchoRec = Math.floor(this.imagenRecargar.width / 3);
-        this.altoRec = Math.floor(this.imagenRecargar.height);
-
-        console.log(this.ancho, this.alto);
 	}
 
 	dibuja()

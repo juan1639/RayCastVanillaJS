@@ -78,7 +78,8 @@ export class Settings
     static COLORES =
     {
         //SUELO: '#752300'
-        SUELO: '#474747',
+        //SUELO: '#474747',
+        SUELO: '#685900',
         CIELO: '#8CBED6',
         PARED_CLARO: '#909090',
         PARED_OSCURO: '#737373',
