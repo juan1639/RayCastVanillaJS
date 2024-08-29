@@ -14,13 +14,19 @@ export class Arma
             this.ancho = Math.floor(this.imagen.width / 3);
             this.alto = Math.floor(this.imagen.height);
 
+            console.log(this.ancho, this.alto);
+        }
+
+        imagenRecargar.onload = () =>
+        {
+            this.imagenRecargar = imagenRecargar;
+
             this.anchoRec = Math.floor(this.imagenRecargar.width / 3);
             this.altoRec = Math.floor(this.imagenRecargar.height);
             
-            console.log(this.ancho, this.alto);
+            console.log(this.anchoRec, this.altoRec);
         }
         
-		this.imagenRecargar = imagenRecargar;
         this.sonidoArma = sonido;
 
 		this.visible = true;

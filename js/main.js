@@ -190,6 +190,19 @@ function dispararRecargar()
 	}
 }
 
+function dibujaPtoMira()
+{
+	const {ctx, canvasAncho, canvasAlto} = Settings;
+
+	const size = 7;
+	const grosor = 1;
+
+	ctx.fillStyle = '#ffff45';
+	ctx.fillRect(canvasAncho / 2 - size, canvasAlto / 2, size * 2, grosor);
+
+	ctx.fillRect(canvasAncho / 2, canvasAlto / 2 - size, grosor, size * 2);
+}
+
 function inicializaArmasJugador()
 {
 	const {
@@ -326,6 +339,7 @@ function buclePrincipal()
 	jugador.dibuja();
 	renderSprites();
 	dibujaArmasJugador();
+	dibujaPtoMira();
 }
 
 export { jugador, buclePrincipal };
