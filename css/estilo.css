@@ -155,8 +155,10 @@ button:active {
 BOTONES < CONTROLES & NUEVA PARTIDA >
 ---------------------------------------------------------*/
 #botonera {
-  width: 95%;
+  width: 100%;
   justify-content: space-between;
+  align-items: flex-end;
+  margin-top: -200px;
   /* *** toggle display:flex *** */
   display: none;
 }
@@ -168,7 +170,6 @@ BOTONES < CONTROLES & NUEVA PARTIDA >
 	border-radius: 5px;
 	border: none;
 	background-color: none;
-  margin-top: -42%;
   opacity: 0.3;
 }
 
