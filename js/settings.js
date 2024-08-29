@@ -48,6 +48,7 @@ export class Settings
     static animaArma = 0;
     static seleccArma = 0;
     static recargando = 0;
+    static NRO_DESTELLOS_IMPACTO = 15;
 
     //	CARGAMOS TILES
 	static tiles = new Image();
