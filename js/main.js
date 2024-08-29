@@ -2,6 +2,7 @@ import { key_up, key_down, touch_start, touch_end } from "./listeners.js";
 import { Level } from "./class/escenario.js";
 import { Player } from './class/jugador.js';
 import { Arma } from "./class/armas/armas.js";
+import { Particulas} from './class/armas/armas.js';
 import { Sprite } from "./class/sprites/sprite.js";
 import { Settings } from "./settings.js";
 import { Escenarios } from "./escenarios.js";
@@ -47,7 +48,9 @@ function dispararRecargar()
 	{
 		Settings.animaArma = 20;// FPS duracion
 		armas[Settings.seleccArma].sonido();
-		armas[Settings.seleccArma].inicializaDestellosImpacto();
+		
+		Particulas.iniciaTemporizador();
+		armas[Settings.seleccArma].instanciaParticulas();
 	}
 }
 

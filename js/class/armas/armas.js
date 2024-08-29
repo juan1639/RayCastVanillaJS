@@ -35,19 +35,7 @@ export class Arma
 
         this.impactos = false;
 
-        this.destellosData = [];
-
-        for (let i = 0; i < Settings.NRO_DESTELLOS_IMPACTO; i ++)
-        {
-            this.destellosData[i] =
-            {
-                x: 0,
-                y: 0,
-                size: 0,
-                ang: 0,
-                vel: 0
-            };
-        }
+        this.instanciaParticulas();
 	}
 
 	dibuja()
@@ -55,7 +43,10 @@ export class Arma
 		const {ctx} = Settings;
 
 		this.actualiza();
-        this.destellosImpacto();
+
+        this.particulas.forEach(parti => {
+            parti.dibuja();
+        });
 
 		if (Settings.modo3D && this.visible)
 		{
@@ -138,47 +129,57 @@ export class Arma
         );
     }
 
-    destellosImpacto()
+    instanciaParticulas()
     {
-        if (!this.impactos) return;
+        this.particulas = [];
+
+        for (let i = 0; i < Settings.NRO_PARTICULAS_IMPACTO; i ++)
+        {
+            this.particulas.push(new Particulas());
+        }
+    }
+}
+
+// =======================================================================================
+export class Particulas
+{
+    static impactos = false;
+
+    constructor()
+	{
+        this.inicializaValores();
+	}
+
+    dibuja()
+    {
+        if (!Particulas.impactos) return;
 
         Settings.ctx.fillStyle = this.chooseRndColor();
 
-        for (let i = 0; i < Settings.NRO_DESTELLOS_IMPACTO; i ++)
-        {
-            const destello = this.destellosData[i];
+        Settings.ctx.fillRect(this.x, this.y, this.size, this.size);
 
-            Settings.ctx.fillRect(
-                destello.x, destello.y,
-                destello.size, destello.size
-            );
-    
-            destello.x += Math.cos(destello.ang) * destello.vel;
-            destello.y += Math.sin(destello.ang) * destello.vel;
-        }
+        this.x += Math.cos(this.ang) * this.vel;
+        this.y += Math.sin(this.ang) * this.vel;
     }
 
-    inicializaDestellosImpacto()
+    static iniciaTemporizador()
     {
-        this.impactos = true;
+        Particulas.impactos = true;
 
         setTimeout(() => {
-            this.impactos = false;
+            Particulas.impactos = false;
         }, 1200);
+    }
 
-        const {canvasAncho, canvasAlto, NRO_DESTELLOS_IMPACTO} = Settings;
+    inicializaValores()
+    {
+        const {canvasAncho, canvasAlto} = Settings;
 
-        for (let i = 0; i < NRO_DESTELLOS_IMPACTO; i ++)
-        {
-            const destello = this.destellosData[i];
-            const minVelDestello = 12;
-
-            destello.x = canvasAncho / 2;
-            destello.y = canvasAlto / 2;
-            destello.size = Math.floor(Math.random() * 3) + 2;
-            destello.ang = Math.floor(Math.random() * 360);
-            destello.vel = Math.floor(Math.random() * 8) + minVelDestello;
-        }
+        this.x = canvasAncho / 2;
+        this.y = canvasAlto / 2;
+        this.size = Math.floor(Math.random() * 3) + 2;
+        this.ang = Math.floor(Math.random() * 360);
+        this.vel = Math.floor(Math.random() * 8) + 12;// (12 min vel)
     }
 
     chooseRndColor()
