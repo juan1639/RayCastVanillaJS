@@ -1,5 +1,6 @@
 import { Level } from "./class/escenario.js";
 import { Player } from './class/jugador.js';
+import { Arma } from "./class/armas/armas.js";
 import { Sprite } from "./class/sprites/sprite.js";
 import { Settings } from "./settings.js";
 import { Escenarios } from "./escenarios.js";
@@ -21,6 +22,7 @@ var jugador;
 //var ray;
 
 var sprites = [];	// array con los sprites
+var armas = [];	// array con las armas
 
 // ----------------------------------------------------------------------
 // 	EVENTOS (Menu Config pre-juego)
@@ -87,6 +89,7 @@ document.addEventListener('keyup', function(e)
 
 		case 32:
 			console.log('disparo!');
+			Settings.animaArma = 20;// FPS duracion
 		break;
 		
 		case 17:
@@ -94,7 +97,11 @@ document.addEventListener('keyup', function(e)
 		break;
 
 		case 16:
-			Settings.renderConTexturas = cambiaModo(Settings.renderConTexturas);
+			Settings.seleccArma ++;
+			if (Settings.seleccArma > 1)
+			{
+				Settings.seleccArma = 0;
+			}
 		break;
 	}
 });
@@ -126,6 +133,7 @@ document.addEventListener('touchstart', function(e)
 
 		case 'boton__fire':
 			console.log('disparo!');
+			Settings.animaArma = 20;// FPS duracion
 		break;
 
 		case 'boton__mapa':
@@ -133,7 +141,11 @@ document.addEventListener('touchstart', function(e)
 		break;
 
 		case 'boton__texturas':
-			Settings.renderConTexturas = cambiaModo(Settings.renderConTexturas);
+			Settings.seleccArma ++;
+			if (Settings.seleccArma > 1)
+			{
+				Settings.seleccArma = 0;
+			}
 		break;
 	}
 });
@@ -164,6 +176,31 @@ document.addEventListener('touchend', function(e)
 		break;
 	}
 });
+
+function inicializaArmasJugador()
+{
+	const {
+		imgPistola,
+		imgPistolaRecargar,
+		imgEscopeta,
+		imgEscopetaRecargar,
+		canvasAncho,
+		canvasAlto
+	} = Settings;
+
+	imgPistola.src = "img/dPist.png";
+	imgPistolaRecargar.src = "img/dPist.png";
+	imgEscopeta.src = "img/dEscop.png";
+	imgEscopetaRecargar.src = "img/dRecargarEscop.png";
+
+	armas[0] = new Arma(canvasAncho / 2, canvasAlto, imgPistola, imgPistolaRecargar);
+	armas[1] = new Arma(canvasAncho / 2, canvasAlto, imgEscopeta, imgEscopetaRecargar);
+}
+
+function dibujaArmasJugador()
+{
+	armas[Settings.seleccArma].dibuja();
+}
 
 function inicializaSprites()
 {
@@ -241,6 +278,9 @@ document.addEventListener("DOMContentLoaded", () =>
 	escenario = new Level(canvas, ctx, Escenarios.nivel_1);
 	jugador = new Player(ctx, escenario, 1 * tamTile + midTamTile, 1 * tamTile + midTamTile);
 
+	//	CARGAMOS LAS ARMAS DEL JUGADOR
+	inicializaArmasJugador();
+
 	//	CARGAMOS LOS SPRITES DESPUÉS DEL ESCENARIO Y EL JUGADOR
 	inicializaSprites();
 
@@ -265,8 +305,8 @@ function buclePrincipal()
 	}
   
 	jugador.dibuja();
-
 	renderSprites();
+	dibujaArmasJugador();
 }
 
 export { jugador, buclePrincipal };

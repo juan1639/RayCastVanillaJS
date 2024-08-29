@@ -45,9 +45,18 @@ export class Settings
     static renderConTexturas = true;
     static modoSmoothing = false;
 
+    static animaArma = 0;
+    static seleccArma = 0;
+
     //	CARGAMOS TILES
 	static tiles = new Image();
 	static tilesVert = new Image();
+
+    //  Cargamos las imagenes de las armas jugador
+    static imgPistola = new Image();
+    static imgPistolaRecargar = new Image();
+    static imgEscopeta = new Image();
+    static imgEscopetaRecargar = new Image();
     
     //	Cargamos las imagenes para los SPRITES
 	static imgArmor = new Image();
