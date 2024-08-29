@@ -2,12 +2,13 @@ import { Settings } from "../../settings.js";
 
 export class Arma
 {
-	constructor(x, y, imagen, imagenRecargar)
+	constructor(x, y, imagen, imagenRecargar, sonido)
 	{
 		this.x = x;
 		this.y = y;
 		this.imagen = imagen;
 		this.imagenRecargar = imagenRecargar;
+        this.sonidoArma = sonido;
 
 		this.visible = true;
 		this.scale = 2;
@@ -31,10 +32,15 @@ export class Arma
 		{
             const anchoSc = this.ancho * this.scale;
             const altoSc = this.alto * this.scale;
+
             let actualizaClip = 0;
 
             if (Settings.animaArma > 0)
             {
+                if (Settings.animaArma === 1)
+                {
+                    Settings.recargando = 20;
+                }
                 actualizaClip = 2;
             }
             
@@ -43,10 +49,17 @@ export class Arma
                 actualizaClip = 1;
             }
 
-            ctx.drawImage(this.imagen, 
-                0 + actualizaClip * this.ancho, 0, this.ancho, this.alto,
-                this.x - anchoSc / 2, this.y - altoSc, anchoSc, altoSc
-            );
+            if (Settings.recargando > 0)
+            {
+                this.recargaEscopeta(ctx);
+            }
+            else
+            {
+                ctx.drawImage(this.imagen, 
+                    0 + actualizaClip * this.ancho, 0, this.ancho, this.alto,
+                    this.x - anchoSc / 2, this.y - altoSc, anchoSc, altoSc
+                );
+            }
 		}
     }
 
@@ -56,5 +69,38 @@ export class Arma
         {
             Settings.animaArma --;
         }
+
+        if (Settings.recargando > 0)
+        {
+            Settings.recargando --;
+        }
+    }
+
+    sonido()
+    {
+        this.sonidoArma.play();
+    }
+
+    recargaEscopeta(ctx)
+    {
+        let actualizaClip = 0;
+
+        const anchoSc = this.anchoRec * this.scale;
+        const altoSc = this.altoRec * this.scale;
+
+        if (Settings.recargando > 0)
+        {
+            actualizaClip = 2;
+        }
+        
+        if (Settings.recargando > 10)
+        {
+            actualizaClip = 1;
+        }
+
+        ctx.drawImage(this.imagenRecargar, 
+            0 + actualizaClip * this.anchoRec, 0, this.anchoRec, this.alto,
+            this.x - anchoSc / 2, this.y - altoSc, anchoSc, altoSc
+        );
     }
 }

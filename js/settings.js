@@ -47,6 +47,7 @@ export class Settings
 
     static animaArma = 0;
     static seleccArma = 0;
+    static recargando = 0;
 
     //	CARGAMOS TILES
 	static tiles = new Image();
@@ -85,4 +86,9 @@ export class Settings
         PUNTITO_SPRITE: '#ff3909',
         PUNTITO_JUGADOR: '#35ff11',
     };
+
+    //  Cargamos los audios
+    static sonidoPistola = new Audio("./audio/disparocorto.mp3");
+    static sonidoEscopeta = new Audio("./audio/disparo.mp4");
+    static sonidoEscopetaCarga = new Audio("./audio/cargar.mp3");
 }

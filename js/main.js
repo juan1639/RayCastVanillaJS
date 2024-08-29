@@ -89,7 +89,7 @@ document.addEventListener('keyup', function(e)
 
 		case 32:
 			console.log('disparo!');
-			Settings.animaArma = 20;// FPS duracion
+			dispararRecargar();
 		break;
 		
 		case 17:
@@ -133,7 +133,7 @@ document.addEventListener('touchstart', function(e)
 
 		case 'boton__fire':
 			console.log('disparo!');
-			Settings.animaArma = 20;// FPS duracion
+			dispararRecargar();
 		break;
 
 		case 'boton__mapa':
@@ -177,6 +177,19 @@ document.addEventListener('touchend', function(e)
 	}
 });
 
+function dispararRecargar()
+{
+	if (Settings.recargando > 0)
+	{
+		Settings.recargando --;
+	}
+	else
+	{
+		Settings.animaArma = 20;// FPS duracion
+		armas[Settings.seleccArma].sonido();
+	}
+}
+
 function inicializaArmasJugador()
 {
 	const {
@@ -184,6 +197,9 @@ function inicializaArmasJugador()
 		imgPistolaRecargar,
 		imgEscopeta,
 		imgEscopetaRecargar,
+		sonidoPistola,
+		sonidoEscopeta,
+		sonidoEscopetaCarga,
 		canvasAncho,
 		canvasAlto
 	} = Settings;
@@ -193,8 +209,8 @@ function inicializaArmasJugador()
 	imgEscopeta.src = "img/dEscop.png";
 	imgEscopetaRecargar.src = "img/dRecargarEscop.png";
 
-	armas[0] = new Arma(canvasAncho / 2, canvasAlto, imgPistola, imgPistolaRecargar);
-	armas[1] = new Arma(canvasAncho / 2, canvasAlto, imgEscopeta, imgEscopetaRecargar);
+	armas.push(new Arma(canvasAncho / 2, canvasAlto, imgPistola, imgPistolaRecargar, sonidoPistola));
+	armas.push(new Arma(canvasAncho / 2, canvasAlto, imgEscopeta, imgEscopetaRecargar, sonidoEscopeta));
 }
 
 function dibujaArmasJugador()
