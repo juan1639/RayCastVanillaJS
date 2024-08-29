@@ -70,9 +70,20 @@ function startGameValues()
 
 	Settings.modoSmoothing = selectSmooth.value === "true" ? true : false;
 
-	if (reescalaCanvas.X < 576)
+	//	AMPLIAMOS EL CANVAS CON CSS
+	reescalarCanvas(reescalaCanvas.X, reescalaCanvas.Y);
+
+	if (reescalaCanvas.X === 320 && reescalaCanvas.Y === 320)
 	{
+		Settings.canvas.style.width = '100vw';
+		Settings.canvas.style.height = '100vh';
 		botonera.style.display = 'flex';
+	}
+
+	if (reescalaCanvas.X === 1280 && reescalaCanvas.Y === 960)
+	{
+		Settings.canvas.style.width = '100vw';
+		Settings.canvas.style.height = '100vh';
 	}
 
 	//	EMPEZAMOS A EJECUTAR EL BUCLE PRINCIPAL
@@ -82,9 +93,6 @@ function startGameValues()
 			buclePrincipal();
 		}, 1000 / Settings.FPS
 	);
-
-	//	AMPLIAMOS EL CANVAS CON CSS
-	reescalarCanvas(reescalaCanvas.X, reescalaCanvas.Y);
 }
 
 //  PINTA COLORES BÁSICOS PARA SUELO Y TECHO
