@@ -111,7 +111,7 @@ function sueloCielo(colorCielo, colorSuelo)
 	
 	ctx.drawImage(fondoCielo,
 		0 + calculaClipCielo(), 0, canvasAncho, canvasAlto,
-		0, 0, canvasAncho, canvasAlto);
+		0, 0, canvasAncho, canvasAlto / 2);
 
 	ctx.fillStyle = colorSuelo;
 	ctx.fillRect(0, canvasAlto / 2, canvasAncho, canvasAlto);

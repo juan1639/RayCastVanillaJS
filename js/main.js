@@ -161,9 +161,9 @@ document.addEventListener("DOMContentLoaded", () =>
 	tilesVert.src = "img/walls7vert.png";
 
 	console.log(tiles.width, tilesVert.height);
-	console.log(tiles.width, tilesVert.width);
+	console.log(tiles.width, tilesVert.height);
 
-	fondoCielo.src = "img/fondo-atardecer4480x640.png";
+	fondoCielo.src = "img/fondo-atardecer-2.png";
 
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;
