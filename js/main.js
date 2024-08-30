@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () =>
 		canvasAlto,
 		tiles,
 		tilesVert,
+		fondoCielo,
 		reescalaCanvas
 	} = Settings;
 
@@ -161,6 +162,8 @@ document.addEventListener("DOMContentLoaded", () =>
 
 	console.log(tiles.width, tilesVert.height);
 	console.log(tiles.width, tilesVert.width);
+
+	fondoCielo.src = "img/fondo-atardecer4480x640.png";
 
 	//	MODIFICA EL TAMAÑO DEL CANVAS
 	canvas.width = canvasAncho;

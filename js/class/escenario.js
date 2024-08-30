@@ -17,10 +17,10 @@ export class Level
 		this.anchoC = this.canvas.width;
 		
 		//TAMAÑO DE LOS TILES
-		//this.altoT = parseInt(this.altoC / this.altoM);
-		//this.anchoT = parseInt(this.anchoC / this.anchoM);
-		this.altoT = Settings.tamTile;
-		this.anchoT = Settings.tamTile;
+		this.altoT = parseInt(this.altoC / this.altoM);
+		this.anchoT = parseInt(this.anchoC / this.anchoM);
+		//this.altoT = Settings.tamTile;
+		//this.anchoT = Settings.tamTile;
 	}
 
 	colision(x, y)

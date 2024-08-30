@@ -3,7 +3,7 @@
 //  
 // ----------------------------------------------------------------------
 import { Settings } from "../settings.js";
-import { buclePrincipal } from '../main.js';
+import { buclePrincipal, jugador } from '../main.js';
 
 function cambiaModo(bool)
 {
@@ -35,6 +35,12 @@ function convierteRadianes(angulo)
 {
 	angulo = angulo * (Math.PI / 180);
 	return angulo;
+}
+
+function convierteAngulo(radian)
+{
+	const grados = radian * (180 / Math.PI);
+	return grados;
 }
 
 function distanciaEntrePuntos(x1, y1, x2, y2)
@@ -98,13 +104,23 @@ function startGameValues()
 //  PINTA COLORES BÁSICOS PARA SUELO Y TECHO
 function sueloCielo(colorCielo, colorSuelo)
 {
-    const {ctx, canvasAncho, canvasAlto} = Settings;
+    const {ctx, canvasAncho, canvasAlto, fondoCielo} = Settings;
 
-	ctx.fillStyle = colorCielo;
-	ctx.fillRect(0, 0, canvasAncho, canvasAlto);
+	//ctx.fillStyle = colorCielo;
+	//ctx.fillRect(0, 0, canvasAncho, canvasAlto);
 	
+	ctx.drawImage(fondoCielo,
+		0 + calculaClipCielo(), 0, canvasAncho, canvasAlto,
+		0, 0, canvasAncho, canvasAlto);
+
 	ctx.fillStyle = colorSuelo;
 	ctx.fillRect(0, canvasAlto / 2, canvasAncho, canvasAlto);
+
+}
+
+function calculaClipCielo()
+{
+	return ((3840 * convierteAngulo(jugador.anguloRotacion)) / 360);
 }
 
 // ------------------------------------------------------------------------------------

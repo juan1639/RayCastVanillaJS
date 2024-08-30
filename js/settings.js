@@ -54,6 +54,9 @@ export class Settings
 	static tiles = new Image();
 	static tilesVert = new Image();
 
+    //  FONDO CIELO
+    static fondoCielo = new Image();
+
     //  Cargamos las imagenes de las armas jugador
     static imgPistola = new Image();
     static imgPistolaRecargar = new Image();
