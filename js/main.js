@@ -157,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () =>
 		reescalaCanvas
 	} = Settings;
 
-	tiles.src = "img/walls7.png";
-	tilesVert.src = "img/walls7vert.png";
+	tiles.src = "img/walls77.png";
+	tilesVert.src = "img/walls77vert.png";
 
 	console.log(tiles.width, tilesVert.height);
 	console.log(tiles.width, tilesVert.height);
